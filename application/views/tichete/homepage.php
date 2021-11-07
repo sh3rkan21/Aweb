@@ -18,19 +18,15 @@
 						<thead>
 							<tr>
 								<th>ID Ticket</th>
-								<th>ID Parinte</th>
+								<th>Tichet Parinte</th>
 								<th>Poza</th>
-								<th>Denumire</th>
+								<th>Denumire Tichet</th>
 								<th>Descriere</th>
 								<th>Data</th>
 								<th>Actiuni</th>
 							</tr>
 						</thead>
 						<tbody>
-
-
-
-
 						<tr>
 							<?php foreach ($tichete as $item): ?>
 
@@ -38,7 +34,16 @@
 								<?= $item->id; ?>
 							</td>
 							<td>
-								<?= $item->parent_id; ?>
+								<?php
+								if($item->parent_id == 0)
+								{
+									echo "Fara parinte";
+								}
+								else
+								{
+									echo $item->parentName;
+								}
+								?>
 							</td>
 							<td>
 								<img src="<?=base_url('images/' . $item->poza)?>" height="50px" width="50px" alt="Tichet Poza">

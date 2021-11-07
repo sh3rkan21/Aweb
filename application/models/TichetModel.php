@@ -11,8 +11,11 @@ class TichetModel extends CI_Model
 
 	public function getTichete()
 	{
-		$this->db->order_by("created_at", "desc");
-		$query = $this->db->get('tichete');
+//		$this->db->order_by("created_at", "desc");
+		$this->db->select('t.*, tp.denumire AS parentName', false);
+		$this->db->from('tichete as t');
+		$this->db->join('tichete as tp', 'tp.parent_id = t.id', "left");
+		$query = $this->db->get();
 		return $query->result();
 	}
 
